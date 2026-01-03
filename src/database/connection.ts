@@ -1,11 +1,13 @@
-import 'dotenv/config' // <--- DEVE SER A PRIMEIRA LINHA
+import 'dotenv/config'
 import knex from 'knex'
 import config from '../knexfile'
 
-const environment = process.env.NODE_ENV || 'development'
+console.log(
+  `🚀 Tentando conexão com: ${
+    process.env.DATABASE_URL ? 'URL Detectada' : 'URL VAZIA'
+  }`
+)
 
-console.log(`🚀 Banco de dados conectando em modo: ${environment}`)
-
-const db = knex(config[environment])
+const db = knex(config)
 
 export { db }

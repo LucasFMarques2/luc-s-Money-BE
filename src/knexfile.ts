@@ -2,31 +2,14 @@ import type { Knex } from 'knex'
 import 'dotenv/config'
 import path from 'path'
 
+// Se a URL não existir, o sistema avisa imediatamente
 if (!process.env.DATABASE_URL) {
-  console.warn('⚠️ DATABASE_URL não definida!')
+  console.error(
+    '❌ ERRO CRÍTICO: DATABASE_URL não encontrada nas variáveis de ambiente!'
+  )
 }
 
-const config: { [key: string]: Knex.Config } = {
-  development: {
-    client: 'mysql2',
-    connection: process.env.DATABASE_URL || {
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD ?? '',
-      database: process.env.DB_NAME,
-    },
-    migrations: {
-      directory: path.resolve(__dirname, 'database', 'migrations'),
-      extension: 'ts',
-    },
-    seeds: {
-      directory: path.resolve(__dirname, 'database', 'seeds'),
-      extension: 'ts',
-    },
-  },
-
-  production: {
+const config: Knex.Config = {
   client: 'mysql2',
   connection: process.env.DATABASE_URL,
   pool: { min: 2, max: 10 },
@@ -34,7 +17,6 @@ const config: { [key: string]: Knex.Config } = {
     directory: path.resolve(__dirname, 'database', 'migrations'),
     extension: 'js',
   },
-},
 }
 
 export default config
