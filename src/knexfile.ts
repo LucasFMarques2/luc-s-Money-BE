@@ -2,11 +2,8 @@ import type { Knex } from 'knex'
 import 'dotenv/config'
 import path from 'path'
 
-// Se a URL não existir, o sistema avisa imediatamente
 if (!process.env.DATABASE_URL) {
-  console.error(
-    '❌ ERRO CRÍTICO: DATABASE_URL não encontrada nas variáveis de ambiente!'
-  )
+  console.error('❌ ERRO CRÍTICO: DATABASE_URL não encontrada nas variáveis de ambiente!')
 }
 
 const config: Knex.Config = {
