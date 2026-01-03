@@ -27,20 +27,14 @@ const config: { [key: string]: Knex.Config } = {
   },
 
   production: {
-    client: 'mysql2',
-    connection: process.env.DATABASE_URL || {
-      host: process.env.MYSQLHOST || 'treamay.proxy.rlwy.net',
-      port: Number(process.env.MYSQLPORT || 44841),
-      user: process.env.MYSQLUSER || 'root',
-      password: process.env.MYSQLPASSWORD || 'Lukisuper111',
-      database: process.env.MYSQLDATABASE || 'railway',
-    },
-    pool: { min: 2, max: 10 },
-    migrations: {
-      directory: path.resolve(__dirname, 'database', 'migrations'),
-      extension: 'js',
-    },
+  client: 'mysql2',
+  connection: process.env.DATABASE_URL,
+  pool: { min: 2, max: 10 },
+  migrations: {
+    directory: path.resolve(__dirname, 'database', 'migrations'),
+    extension: 'js',
   },
+},
 }
 
 export default config
