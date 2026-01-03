@@ -1,11 +1,10 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import { userRoutes } from './routes/userRoutes'
 import { authRoutes } from './routes/authRoutes'
 import { transactionRoutes } from './routes/transactionRoutes'
 
-dotenv.config()
 
 const app = express()
 
@@ -25,7 +24,6 @@ app.use('/transactions', transactionRoutes)
 app.get('/', (req, res) => {
   res.json({ message: 'API de Finanças está rodando! 🚀' })
 })
-
 
 const PORT = process.env.PORT || 3000
 

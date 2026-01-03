@@ -8,7 +8,9 @@
     "start": "node dist/server.js",
     "migrate": "knex migrate:latest --knexfile src/knexfile.ts",
     "migrate:prod": "knex migrate:latest --knexfile dist/knexfile.js",
-    "seed": "knex seed:run --knexfile src/knexfile.ts"
+    "seed": "knex seed:run --knexfile src/knexfile.ts",
+    "knex": "knex --knexfile src/knexfile.ts",
+    "migrate:latest": "npm run knex migrate:latest"
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
